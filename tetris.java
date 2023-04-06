@@ -26,7 +26,7 @@ public class tetris extends JPanel implements KeyListener {
     static int positionyled = 0;
     static ArrayList<Integer> blockxled = new ArrayList<Integer>();
     static ArrayList<Integer> blockyled = new ArrayList<Integer>();
-
+    static int count=0;
     static ArrayList<Boolean> xled = new ArrayList<Boolean>(10);
     static ArrayList<Boolean> yled = new ArrayList<Boolean>(20);
 
@@ -38,7 +38,7 @@ public class tetris extends JPanel implements KeyListener {
     static boolean blockHaslanded = false;
     static boolean hashadheightset = false;
     static boolean firstround = true;
-
+    static int counterformovingdownallblocks=-2;
     public tetris() {
         super();
         setFocusable(true);
@@ -130,13 +130,86 @@ public class tetris extends JPanel implements KeyListener {
                         System.out.print("Det är nu en full rad");
                         for(int i=0; i<spelplansarray2.length;i++){
                             spelplansarray2[i][positionyled-1]=false;
-                           
                             if(spelplansarray2[i][positionyled-2]==true){
-                                spelplansarray2[i][positionyled-1]=true;
-                                spelplansarray2[i][positionyled-2]=false;
+                                    spelplansarray2[i][positionyled-1]=true;
+                                    spelplansarray2[i][positionyled-2]=false;
+                                    if(spelplansarray2[i][positionyled-3]==true){
+                                        spelplansarray2[i][positionyled-2]=true;
+                                        spelplansarray2[i][positionyled-3]=false;
+                                        if(spelplansarray2[i][positionyled-4]==true){
+                                            spelplansarray2[i][positionyled-3]=true;
+                                            spelplansarray2[i][positionyled-4]=false;
+                                            if(spelplansarray2[i][positionyled-5]==true){
+                                                spelplansarray2[i][positionyled-4]=true;
+                                                spelplansarray2[i][positionyled-5]=false;
+                                                if(spelplansarray2[i][positionyled-6]==true){
+                                                    spelplansarray2[i][positionyled-5]=true;
+                                                    spelplansarray2[i][positionyled-6]=false;
+                                                    if(spelplansarray2[i][positionyled-7]==true){
+                                                        spelplansarray2[i][positionyled-6]=true;
+                                                        spelplansarray2[i][positionyled-7]=false;
+                                                        if(spelplansarray2[i][positionyled-8]==true){
+                                                            spelplansarray2[i][positionyled-7]=true;
+                                                            spelplansarray2[i][positionyled-8]=false;
+                                                            if(spelplansarray2[i][positionyled-9]==true){
+                                                                spelplansarray2[i][positionyled-8]=true;
+                                                                spelplansarray2[i][positionyled-9]=false;
+                                                                if(spelplansarray2[i][positionyled-10]==true){
+                                                                    spelplansarray2[i][positionyled-9]=true;
+                                                                    spelplansarray2[i][positionyled-10]=false;
+                                                                    if(spelplansarray2[i][positionyled-11]==true){
+                                                                        spelplansarray2[i][positionyled-10]=true;
+                                                                        spelplansarray2[i][positionyled-11]=false;
+                                                                        if(spelplansarray2[i][positionyled-12]==true){
+                                                                            spelplansarray2[i][positionyled-11]=true;
+                                                                            spelplansarray2[i][positionyled-12]=false;
+                                                                            if(spelplansarray2[i][positionyled-13]==true){
+                                                                                spelplansarray2[i][positionyled-12]=true;
+                                                                                spelplansarray2[i][positionyled-13]=false;
+                                                                                if(spelplansarray2[i][positionyled-14]==true){
+                                                                                    spelplansarray2[i][positionyled-13]=true;
+                                                                                    spelplansarray2[i][positionyled-14]=false;
+                                                                                    if(spelplansarray2[i][positionyled-15]==true){
+                                                                                        spelplansarray2[i][positionyled-14]=true;
+                                                                                        spelplansarray2[i][positionyled-15]=false;
+                                                                                        if(spelplansarray2[i][positionyled-16]==true){
+                                                                                            spelplansarray2[i][positionyled-15]=true;
+                                                                                            spelplansarray2[i][positionyled-16]=false;
+                                                                                            if(spelplansarray2[i][positionyled-17]==true){
+                                                                                                spelplansarray2[i][positionyled-16]=true;
+                                                                                                spelplansarray2[i][positionyled-17]=false;
+                                                                                                if(spelplansarray2[i][positionyled-18]==true){
+                                                                                                    spelplansarray2[i][positionyled-17]=true;
+                                                                                                    spelplansarray2[i][positionyled-18]=false;
+                                                                                                    
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            
+                            
+                            
+                        }
+                        for(int o=0; o<spelplansarray2.length;o++){
+                            for(int p=0; p<spelplansarray2[o].length; p++){
+                                spelplansarray2[o][p-1]=spelplansarray2[o][p-2];
+                                spelplansarray2[o][p-2]=false;
+
+                                /*i*/
                             }
-                            
-                            
                         }
                     }
                     
