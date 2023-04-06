@@ -32,7 +32,8 @@ public class tetris extends JPanel implements KeyListener {
 
     int objekt[];
     static Boolean[][] spelplansarray2= new Boolean[10][20]; 
-
+    static int[][] spelplansarrayGraphicsX = new int[10][20];
+    static int[][] spelplansarrayGraphicsY = new int[10][20];
     static int counter = 0;
     static boolean blockHaslanded = false;
     static boolean hashadheightset = false;
@@ -56,11 +57,22 @@ public class tetris extends JPanel implements KeyListener {
             }
         }
 
-        if (blockHaslanded == true) {
+        /*if (blockHaslanded == true) {
             g.setColor(Color.red);
             for(int i=0; i<=amounthaslanded; i++){
             g.fillRect(blockxled.get(i), blockyled.get(i), sizeofoneblock, sizeofoneblock);
             }
+            
+        }*/
+        for(int i=0; i<spelplansarray2.length;i++){
+            for(int j=0; j<spelplansarray2[i].length; j++){
+                if(spelplansarray2[i][j]==true){
+                    g.setColor(Color.red);
+                    g.fillRect(i*sizeofoneblock, j*sizeofoneblock, sizeofoneblock, sizeofoneblock);
+                }
+            }
+        }
+        if(blockHaslanded==true){
             
         }
 
@@ -68,6 +80,9 @@ public class tetris extends JPanel implements KeyListener {
         g.fillRect(x, y, sizeofoneblock, sizeofoneblock);
         repaint();
 
+    }
+    private int getValueAt(int[][] spelplansarray2, int x, int y) {
+        return spelplansarray2[x][y];
     }
 
     
@@ -106,24 +121,35 @@ public class tetris extends JPanel implements KeyListener {
         if(positionyled==heightinrows||spelplansarray2[positionxled][positionyled]==true){
             spelplansarray2[positionxled][positionyled-1]=true;
             int istrue=0;
+            
             for (int j = 0; j < spelplansarray2.length; j++) {
-                if(spelplansarray2[j][positionyled]==true){
+                if(spelplansarray2[j][positionyled-1]==true){
                     System.out.print("*");
                     istrue++;
-                    if(istrue==9){
-                        for (int i = 0; i < spelplansarray2.length; i++) {
-                        if(spelplansarray2[i][positionyled]==true){
-                            spelplansarray2[i][positionyled]=false;
+                    if(istrue==10){
+                        System.out.print("Det är nu en full rad");
+                        for(int i=0; i<spelplansarray2.length;i++){
+                            spelplansarray2[i][positionyled-1]=false;
+                           
+                            if(spelplansarray2[i][positionyled-2]==true){
+                                spelplansarray2[i][positionyled-1]=true;
+                                spelplansarray2[i][positionyled-2]=false;
+                            }
+                            
                             
                         }
                     }
+                    
                 }
                     
                 }
-            }
+            
+            
             blockxled.add(x);
             blockyled.add(y);
             System.out.print("\n");
+            
+            
             positionyled=0;
             y=-40;
             blockHaslanded=true;
@@ -177,13 +203,11 @@ public class tetris extends JPanel implements KeyListener {
           spelplansarray2[i][heightinrows]=true;  
           
         }
-        
+        //spelplansarray2[5][7]=true;
         JFrame tetrisframe = new JFrame("Tetris");
         tetrisframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tetris tetris = new tetris();
         tetris.setBackground(Color.black);
-        System.out.println(yled);
-        System.out.println(xled);
         tetrisframe.add(tetris);
         tetrisframe.setVisible(true);
         tetrisframe.setBounds(20, 10, screen_width, 800);
@@ -193,8 +217,9 @@ public class tetris extends JPanel implements KeyListener {
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             public void run() {  
-                
+                int istrue=0;
                 moveDown();
+                
 
             }
         };
